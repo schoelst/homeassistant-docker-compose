@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   homeassistant:
     container_name: homeassistant
@@ -9,7 +9,8 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    ports:
+      - "8123:8123"
 
   mosquitto:
     container_name: mosquitto
@@ -22,4 +23,3 @@ services:
       - "1883:1883"
       - "9001:9001"
     restart: unless-stopped
-    network_mode: host

@@ -6,8 +6,14 @@ Docker compose file for home assistant and my integrations. Integrations:
 - Mosquitto (MQTT)
 - Let's encrypt
 
+- [Home Assistant Docker Compose](#home-assistant-docker-compose)
+  - [Setup](#setup)
+    - [Mosquitto](#mosquitto)
+    - [InfluxDB](#influxdb)
 
-## Mosquitto Setup
+## Setup
+
+### Mosquitto
 
 For authorization to work you will have to create users. **IN THEORY** it should work with:
 
@@ -22,4 +28,21 @@ $ chmod 0700 /etc/mosquitto/passwords
 $ mosquitto_passwd -U /etc/mosquitto/passwords
 $ echo $?
 # should be 0
+```
+
+### InfluxDB
+
+Refer to: https://hub.docker.com/_/influxdb
+
+```shell
+$ docker exec influxdb influx setup \
+      --username $USERNAME \
+      --password $PASSWORD \
+      --org $ORGANIZATION \
+      --bucket $BUCKET \
+      --force
+
+$ docker exec influxdb influx auth list \
+      --user homeassistant \
+      --json | grep token | cut -d "\"" -f4
 ```

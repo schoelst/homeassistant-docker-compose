@@ -11,6 +11,11 @@ influxdb:
   token: !secret influxdb_token
   organization: !secret influxdb_organization
   bucket: homeassistant
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
 
 # Load frontend themes from the themes folder
 frontend:

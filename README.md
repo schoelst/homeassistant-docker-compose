@@ -3,11 +3,11 @@
 Docker compose file for home assistant and my integrations. Integrations:
 - InfluxDB
 - Graphana
-- MQTT
+- Mosquitto (MQTT)
 - Let's encrypt
 
 
-## Setup
+## Mosquitto Setup
 
 Create a file `mosquitto/config/passwords` and enter `USER:PASSWORD_IN_CLEAR_TEXT`. Connect to mosquitto using
 ```shell

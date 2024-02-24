@@ -1,0 +1,21 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+influxdb:
+  api_version: 2
+  host: !secret influxdb_host
+  port: 8086
+  database: homeassistant
+  ssl: false
+  token: !secret influxdb_token
+  organization: !secret influxdb_organization
+  bucket: homeassistant
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

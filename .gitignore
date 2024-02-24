@@ -2,6 +2,7 @@
 /config
 mosquitto/data
 mosquitto/log
+grafana
 
 # generic filenames
 .env

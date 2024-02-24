@@ -1,6 +1,9 @@
 version: "3"
 services:
   homeassistant:
+    depends_on:
+      - mosquitto
+      - influxdb
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
@@ -11,6 +14,7 @@ services:
     privileged: true
     ports:
       - "8123:8123"
+    # network_mode: host
 
   mosquitto:
     container_name: mosquitto
@@ -22,4 +26,33 @@ services:
     ports:
       - "1883:1883"
       - "9001:9001"
+    # network_mode: host
     restart: unless-stopped
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:2.7.5
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    ports:
+      - "8086:8086"
+    # network_mode: host
+    restart: unless-stopped
+
+  grafana:
+    depends_on:
+      - influxdb
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    # network_mode: host
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
+      # for embedding in HA
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_SECURITY_ALLOW_EMBEDDING=true

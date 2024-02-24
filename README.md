@@ -46,3 +46,16 @@ $ docker exec influxdb influx auth list \
       --user homeassistant \
       --json | grep token | cut -d "\"" -f4
 ```
+
+## Future Reference:
+
+- https://www.reddit.com/r/homeassistant/comments/oje65v/home_assitant_with_grafana_and_influxdb_2x_basic/
+- https://community.home-assistant.io/t/home-assistant-add-on-influxdb-v2/617977
+- https://github.com/timvancann/home-assistant-docker-compose/blob/master/README.md
+- http://localhost:8123
+- http://vds.local/?path=/&mode=content
+- https://www.home-assistant.io/integrations/influxdb/#configuration
+- https://community.home-assistant.io/t/complete-guide-on-setting-up-grafana-influxdb-with-home-assistant-using-official-docker-images/42860
+- https://www.smarthome-labs.de/home-assistant-daten-in-einer-influxdb-speichern/
+- https://docs.influxdata.com/influxdb/v2/install/
+- https://hub.docker.com/_/influxdb

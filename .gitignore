@@ -1,2 +1,8 @@
 # directories
-config
+/config
+mosquitto/data
+mosquitto/log
+
+# generic filenames
+.env
+passwords
